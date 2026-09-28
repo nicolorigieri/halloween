@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#171913" />
+    <meta name="description" content="La notte delle maschere: iscriviti, vota il costume piu' bello e scopri chi vince." />
+    <title>La Notte delle Maschere | Halloween</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#inizio" aria-label="La Notte delle Maschere, inizio">
+        <span class="brand-mark" aria-hidden="true">✳</span>
+        <span>NOTTE<br />DELLE MASCHERE</span>
+      </a>
+      <nav aria-label="Navigazione principale">
+        <a href="#costumi">I costumi</a>
+        <a href="#classifica">Classifica</a>
+      </nav>
+      <a class="nav-cta" href="#iscriviti">Partecipa <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main>
+      <section class="hero" id="inizio">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="live-dot"></span> 31 OTTOBRE · DALLE 21:00</p>
+          <h1>Una notte<br />da <span>brividi.</span></h1>
+          <p class="hero-intro">Maschere, mostri e idee fuori dagli schemi. Il costume piu' temerario della notte si porta a casa la corona.</p>
+          <a class="button button-acid" href="#iscriviti">Entra in scena <span aria-hidden="true">↓</span></a>
+          <div class="hero-footnote"><span>01 / 03</span><span>SCORRI PER SCOPRIRE</span></div>
+        </div>
+        <div class="hero-art" role="img" aria-label="Zucca intagliata illuminata nella notte di Halloween">
+          <div class="art-stamp">NOTTE<br />DA PAURA</div>
+          <span class="art-caption">IL CONCORSO<br />PIU' MOSTRUOSO</span>
+          <span class="art-number">31<br /><small>OTT</small></span>
+        </div>
+      </section>
+
+      <section class="ticker" aria-label="Invito alla festa">
+        <div class="ticker-track" aria-hidden="true">SFODERA IL TUO LATO OSCURO <span>✳</span> IL COSTUME PIU' BELLO VINCE <span>✳</span> SFODERA IL TUO LATO OSCURO <span>✳</span> IL COSTUME PIU' BELLO VINCE <span>✳</span></div>
+      </section>
+
+      <section class="contest-section" id="iscriviti">
+        <div class="section-heading">
+          <p class="eyebrow">01 — PREPARATI A STUPIRE</p>
+          <h2>La notte e' <em>tua.</em></h2>
+          <p>Lascia il tuo nome e raccontaci da cosa ti travesti. Poi tieni d'occhio la classifica.</p>
+        </div>
+        <form id="registration-form" class="registration-form">
+          <label for="guest-name">IL TUO NOME</label>
+          <input id="guest-name" name="name" type="text" maxlength="40" placeholder="Come ti chiami?" autocomplete="name" required />
+          <label for="guest-costume">IL TUO COSTUME</label>
+          <input id="guest-costume" name="costume" type="text" maxlength="70" placeholder="Es. Strega intergalattica" required />
+          <button class="button button-dark" type="submit"><span>Iscrivimi alla festa</span><span aria-hidden="true">↗</span></button>
+          <p class="form-message" id="registration-message" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="costumes-section" id="costumi">
+        <div class="section-bar">
+          <div>
+            <p class="eyebrow">02 — LA SFILATA</p>
+            <h2>Chi fa <em>paura?</em></h2>
+          </div>
+          <p class="section-meta"><span id="entrant-count">0</span> COSTUMI IN GARA</p>
+        </div>
+        <div id="costume-list" class="costume-list" aria-live="polite">
+          <p class="empty-state">La sfilata sta per cominciare. Iscriviti per aprire le danze.</p>
+        </div>
+      </section>
+
+      <section class="results-section" id="classifica">
+        <div class="results-heading">
+          <p class="eyebrow">03 — IL VERDETTO</p>
+          <h2>La paura<br />fa <em>classifica.</em></h2>
+          <p>Ogni costume merita un brivido. Esprimi il tuo voto e segui la gara in diretta.</p>
+          <div class="results-status"><span class="live-dot"></span><span id="connection-status">AGGIORNAMENTO IN DIRETTA</span></div>
+        </div>
+        <div class="leaderboard-wrap">
+          <div class="leaderboard-top"><span>CLASSIFICA LIVE</span><span>VOTI</span></div>
+          <ol id="leaderboard" class="leaderboard">
+            <li class="empty-state">Ancora nessun voto. La suspense e' gia' nell'aria.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="winner-screen" class="winner-section" hidden aria-live="polite">
+        <div class="winner-spark" aria-hidden="true">✳</div>
+        <p class="eyebrow">IL VERDETTO E' ARRIVATO</p>
+        <h2>La corona va a...</h2>
+        <p class="winner-costume" id="winner-costume">In attesa del vincitore</p>
+        <p class="winner-name" id="winner-name"></p>
+        <p class="winner-votes" id="winner-votes"></p>
+        <div class="winner-seal" aria-hidden="true">RE<br />DELLA<br />NOTTE</div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <a class="brand" href="#inizio"><span class="brand-mark" aria-hidden="true">✳</span><span>NOTTE<br />DELLE MASCHERE</span></a>
+      <p>CHE VINCA IL PIU' MOSTRUOSO.</p>
+      <a href="#inizio" class="back-top">TORNA SU ↑</a>
+    </footer>
+  </body>
+</html>
